@@ -1,0 +1,74 @@
+aid: faros
+name: Faros AI
+review:
+  question: Does Faros AI expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No event-driven streaming transport (WebSocket, SSE, or message broker)
+    is documented on Faros's public API surface, so no AsyncAPI document was
+    authored. Faros's data-in path is request/response REST/HTTP ingestion
+    (events and model writes) plus inbound HTTP webhooks; its data-out path is
+    a synchronous Hasura GraphQL query API. Inbound webhooks are HTTP POST
+    endpoints Faros receives, not an outbound event stream Faros publishes.
+findings:
+  summary: |
+    Faros AI does not publish a documented public WebSocket API. The platform
+    exposes a REST API at https://prod.api.faros.ai for account/identity,
+    graph management, event and model ingestion, and inbound webhooks, plus a
+    Hasura-powered GraphQL query API at POST /graphs/{graph}/graphql over the
+    canonical model. All documented surfaces are request/response HTTPS. While
+    Hasura can technically expose GraphQL subscriptions, Faros does not
+    document a public realtime subscription or ws:// / wss:// endpoint on its
+    hosted API as of the review date. Authentication is via a Faros API key in
+    the Authorization header.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://prod.api.faros.ai
+      documented: true
+    - protocol: GraphQL
+      scheme: https
+      baseURL: https://prod.api.faros.ai/graphs/{graph}/graphql
+      note: Hasura-backed GraphQL query API over the canonical model; synchronous HTTP POST.
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Inbound HTTP webhooks (POST /webhooks/{webhook_id}/events) that source systems push to Faros. Not an outbound stream.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented for the Faros hosted API as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://prod.api.faros.ai/users/me
+    - POST https://prod.api.faros.ai/graphs/{graph}/graphql
+    - POST https://prod.api.faros.ai/webhooks/{webhook_id}/events
+    - POST https://prod.api.faros.ai/graphs/{graph}/events (CI/CD and TestExecution events via faros-events-cli)
+  sources:
+    - url: https://docs.faros.ai/reference/getting-api-access
+      type: Documentation
+      note: API access uses an API key in the Authorization header against https://prod.api.faros.ai; REST/GraphQL only.
+    - url: https://docs.faros.ai/docs/querying-data
+      type: Documentation
+      note: GraphQL query API over the canonical model; synchronous HTTP, no WebSocket documented.
+    - url: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
+      type: Documentation
+      note: Inbound webhooks POST to /webhooks/{webhook_id}/events; Faros is the receiver.
+    - url: https://github.com/faros-ai/faros-events-cli
+      type: APIReference
+      note: CLI reports CI/CD and TestExecution events to prod.api.faros.ai over HTTP; no WebSocket.
+    - url: https://github.com/faros-ai/faros-js-client
+      type: APIReference
+      note: JS/TS client wraps GraphQL query and mutation calls over HTTP; no WebSocket transport.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or other publish/subscribe streaming surface is documented.
+    The catalog models the documented REST events/ingestion API, the inbound
+    webhooks endpoint, the CI/CD events surface, and the GraphQL query API.
+    No AsyncAPI document was created because no event-driven streaming
+    transport is published by Faros.

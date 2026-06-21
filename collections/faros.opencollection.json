@@ -1,0 +1,248 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Faros AI API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{apiKey}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the current authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.api.faros.ai/users/me"
+          },
+          "docs": "Returns the identity and account context associated with the API key."
+        },
+        {
+          "info": {
+            "name": "List accounts accessible to the caller.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.api.faros.ai/accounts"
+          },
+          "docs": "List accounts accessible to the caller."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Graphs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List graphs in the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.api.faros.ai/graphs"
+          },
+          "docs": "Lists named graphs; the canonical graph is typically 'default'."
+        },
+        {
+          "info": {
+            "name": "Get a single graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.api.faros.ai/graphs/:graph",
+            "params": [
+              {
+                "name": "graph",
+                "value": "default",
+                "type": "path",
+                "description": "The name of the graph."
+              }
+            ]
+          },
+          "docs": "Get a single graph."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "GraphQL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute a GraphQL query or mutation against a graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.api.faros.ai/graphs/:graph/graphql",
+            "params": [
+              {
+                "name": "graph",
+                "value": "default",
+                "type": "path",
+                "description": "The name of the graph."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"query\": \"query { cicd_Deployment(limit: 10) { uid status { category } } }\"\n}"
+            }
+          },
+          "docs": "Hasura-backed GraphQL endpoint over the Faros canonical model."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ingestion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List canonical models available in the graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.api.faros.ai/graphs/:graph/models",
+            "params": [
+              {
+                "name": "graph",
+                "value": "default",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List canonical models available in the graph."
+        },
+        {
+          "info": {
+            "name": "Write canonical model records into the graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.api.faros.ai/graphs/:graph/models",
+            "params": [
+              {
+                "name": "graph",
+                "value": "default",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"origin\": \"my-source\",\n  \"entries\": []\n}"
+            }
+          },
+          "docs": "Ingests records that conform to the Faros canonical model."
+        },
+        {
+          "info": {
+            "name": "Create an ingestion revision.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.api.faros.ai/graphs/:graph/revisions",
+            "params": [
+              {
+                "name": "graph",
+                "value": "default",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Opens a revision that groups a batch of model writes for the graph."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Report CI/CD and test events to a graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.api.faros.ai/graphs/:graph/events",
+            "params": [
+              {
+                "name": "graph",
+                "value": "default",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{\n  \"origin\": \"my-pipeline\",\n  \"events\": []\n}"
+            }
+          },
+          "docs": "Reports CI (build), CD (deployment), and TestExecution events into the graph."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Deliver events to a configured webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.api.faros.ai/webhooks/:webhook_id/events",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "The id from the webhook definition."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Inbound webhook endpoint; source systems POST event payloads here."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

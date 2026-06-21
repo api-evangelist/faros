@@ -1,0 +1,121 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Faros AI
+providerId: faros
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Engineering Operations
+- Software Engineering Intelligence
+- SEI
+- DORA Metrics
+- Developer Productivity
+- Plans
+description: >-
+  Faros AI uses a sales-led, quote-based pricing model. The published pricing
+  page presents three tiers - Professional, Enterprise, and Ultimate - each
+  requesting a demo rather than listing public per-seat figures. Some
+  third-party marketplaces reference pricing starting around $29 per
+  contributor, but Faros does not publish committed list prices, so exact
+  amounts are not reconciled here. API access is called out as an Enterprise
+  (and above) capability. An open-source Faros Community Edition is also
+  available for self-hosting.
+notes: >-
+  Pricing is sales-led; figures shown by third parties are indicative only.
+  Confirm current tier inclusions and per-contributor pricing directly with
+  Faros sales during reconciliation.
+sources:
+- https://www.faros.ai/pricing
+- https://aws.amazon.com/marketplace/pp/prodview-ueeciflmambza
+- https://github.com/faros-ai/faros-community-edition
+plans:
+- id: faros-community-edition
+  name: Community Edition (Open Source)
+  type: free
+  description: >-
+    Self-hosted, open-source BI, API, and automation layer for engineering
+    operations data, including the Hasura-backed GraphQL API over the
+    canonical model. Free to run on your own infrastructure.
+  entries:
+  - label: Self-Hosted Community Edition
+    name: community_edition
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0 (self-hosted, open source)
+    userMultiplied: false
+  elements:
+  - name: GraphQL API (Hasura)
+  - name: Canonical Model
+  - name: Airbyte Data Ingestion
+- id: faros-professional
+  name: Professional
+  type: subscription
+  description: >-
+    Entry commercial SaaS tier with SaaS tool connectors, SSO, and the
+    AI productivity consultant. Sales-led / quote-based.
+  entries:
+  - label: Professional Subscription
+    name: professional
+    type: usage
+    metric: contributors
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales (per contributor)
+    userMultiplied: true
+  elements:
+  - name: SaaS Tool Connectors
+  - name: SSO
+  - name: AI Productivity Consultant
+- id: faros-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Everything in Professional plus custom and hybrid connectors, SSO/SAML,
+    API access, and advanced RBAC. Sales-led / quote-based.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom and Hybrid Connectors
+  - name: SSO/SAML
+  - name: API Access
+  - name: Advanced RBAC
+- id: faros-ultimate
+  name: Ultimate
+  type: enterprise
+  description: >-
+    Everything in Enterprise plus unlimited connectors and full schema
+    access. Sales-led / quote-based.
+  entries:
+  - label: Ultimate Agreement
+    name: ultimate
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Unlimited Connectors
+  - name: Full Schema Access
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

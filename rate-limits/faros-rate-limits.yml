@@ -1,0 +1,55 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Faros AI
+providerId: faros
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Engineering Operations
+- Software Engineering Intelligence
+- SEI
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Faros AI authenticates API and GraphQL requests with a per-account API key
+  passed in the Authorization header. The platform does not publish committed
+  public rate-limit values for the events/ingestion REST API or the Hasura
+  GraphQL query endpoint; throttling, quotas, and any per-tenant limits are
+  governed by the customer's plan and are not reconciled in this artifact.
+notes: >-
+  No public rate-limit figures are documented for prod.api.faros.ai. Confirm
+  ingestion throughput, GraphQL query limits, and any 429 throttling behavior
+  with Faros during reconciliation; values likely vary by tier and tenant.
+sources:
+- https://docs.faros.ai/reference/getting-api-access
+- https://docs.faros.ai/docs/querying-data
+- https://github.com/faros-ai/faros-js-client
+responseCodes:
+  throttled: 429
+limits:
+- name: REST Events / Ingestion API
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Event and model-write throughput against prod.api.faros.ai; not publicly published.
+- name: GraphQL Query API
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Hasura GraphQL endpoint POST /graphs/{graph}/graphql; limits not publicly published.
+- name: Webhooks
+  scope: webhook
+  metric: requests
+  limit: see provider documentation
+  notes: Inbound webhook delivery to /webhooks/{webhook_id}/events; not publicly published.
+policies:
+- name: API Key Authentication
+  description: All requests require a Faros API key in the Authorization header; revoke and rotate keys in the Faros application.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

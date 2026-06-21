@@ -1,0 +1,224 @@
+{
+  "info": {
+    "name": "Faros AI API",
+    "description": {
+      "content": "REST and GraphQL surface for the Faros AI engineering-operations intelligence platform. Base URL https://prod.api.faros.ai. Authentication is a Faros API key passed in the Authorization header.",
+      "type": "text/plain"
+    },
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "Authorization" },
+      { "key": "value", "value": "{{apiKey}}" },
+      { "key": "in", "value": "header" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://prod.api.faros.ai" },
+    { "key": "graph", "value": "default" },
+    { "key": "apiKey", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "Get the current authenticated user.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/users/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "me"]
+            },
+            "description": "Returns the identity and account context associated with the API key."
+          },
+          "response": []
+        },
+        {
+          "name": "List accounts accessible to the caller.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/accounts",
+              "host": ["{{baseUrl}}"],
+              "path": ["accounts"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Graphs",
+      "item": [
+        {
+          "name": "List graphs in the account.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/graphs",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphs"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a single graph.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/graphs/{{graph}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphs", "{{graph}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "GraphQL",
+      "item": [
+        {
+          "name": "Execute a GraphQL query or mutation against a graph.",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphs/{{graph}}/graphql",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphs", "{{graph}}", "graphql"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { cicd_Deployment(limit: 10) { uid status { category } } }\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Hasura-backed GraphQL endpoint over the Faros canonical model."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Ingestion",
+      "item": [
+        {
+          "name": "List canonical models available in the graph.",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/graphs/{{graph}}/models",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphs", "{{graph}}", "models"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Write canonical model records into the graph.",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphs/{{graph}}/models",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphs", "{{graph}}", "models"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"origin\": \"my-source\",\n  \"entries\": []\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Ingests records that conform to the Faros canonical model."
+          },
+          "response": []
+        },
+        {
+          "name": "Create an ingestion revision.",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphs/{{graph}}/revisions",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphs", "{{graph}}", "revisions"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Opens a revision that groups a batch of model writes for the graph."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "Report CI/CD and test events to a graph.",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/graphs/{{graph}}/events",
+              "host": ["{{baseUrl}}"],
+              "path": ["graphs", "{{graph}}", "events"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"origin\": \"my-pipeline\",\n  \"events\": []\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Reports CI (build), CD (deployment), and TestExecution events into the graph."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "Deliver events to a configured webhook.",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks/:webhook_id/events",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks", ":webhook_id", "events"],
+              "variable": [
+                { "key": "webhook_id", "value": "", "description": "The id from the webhook definition." }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Inbound webhook endpoint; source systems POST event payloads here."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

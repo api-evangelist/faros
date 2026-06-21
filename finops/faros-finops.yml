@@ -1,0 +1,89 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Faros AI
+providerId: faros
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Engineering Operations
+- Software Engineering Intelligence
+- SEI
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Faros AI spend. Faros is sold as a sales-led SaaS
+  subscription across Professional, Enterprise, and Ultimate tiers, generally
+  priced per contributor with custom enterprise agreements; an open-source
+  Community Edition can be self-hosted at infrastructure cost only. Because
+  Faros does not publish committed list prices, the cost figures below are
+  not reconciled.
+notes: >-
+  Subscription amounts are quote-based and not public; verify per-contributor
+  pricing and tier inclusions with Faros sales during reconciliation. For the
+  Community Edition, costs are the customer's own hosting/compute spend.
+sources:
+- https://www.faros.ai/pricing
+- https://aws.amazon.com/marketplace/pp/prodview-ueeciflmambza
+- https://github.com/faros-ai/faros-community-edition
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Faros AI
+serviceCategory: Developer Tools and Engineering Intelligence
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Faros AI Platform
+  ServiceCategory: Developer Tools and Engineering Intelligence
+  ProviderName: Faros AI
+  PublisherName: Faros AI
+  InvoiceIssuerName: Faros AI
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription
+meters:
+- name: contributor_seats
+  description: Active contributors measured by the platform, the primary subscription unit.
+  unit: contributors
+  aggregation: max
+  dimensions:
+  - account
+  - tier
+- name: connectors
+  description: SaaS, custom, and hybrid source connectors enabled (limited or unlimited by tier).
+  unit: connectors
+  aggregation: max
+  dimensions:
+  - account
+  - tier
+- name: self_hosted_compute
+  description: Infrastructure/compute cost of running Faros Community Edition (customer-incurred).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - account
+  - environment
+principles:
+- name: Visibility
+  description: Track contributor counts and enabled connectors against the subscription tier; reconcile annual invoices.
+- name: Allocation
+  description: Map contributor seats and team usage to internal cost centers and engineering orgs.
+- name: Optimization
+  description: Right-size the tier (Professional vs Enterprise vs Ultimate) to required connectors, API access, and schema needs; consider Community Edition for self-hosted use cases.
+- name: Accountability
+  description: Assign an owner for the Faros contract; review seat growth and renewal terms against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
