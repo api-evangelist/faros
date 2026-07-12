@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/faros-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Faros API key created in the Faros application under Settings -> API Keys. Passed
+    directly in the Authorization header.
+  sources:
+  - openapi/faros-openapi.yml

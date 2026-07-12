@@ -1,0 +1,33 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.faros.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 31 09:17:28 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: docs.faros.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  9 04:44:26 2026 GMT
+  hsts: null
+- host: prod.api.faros.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 17 23:59:59 2026 GMT
+  hsts: null
+domains:
+- domain: faros.ai
+  dnssec: true
+  caa:
+  - 0 issuewild "digicert.com; cansignhttpexchanges=yes"
+  - 0 issuewild "letsencrypt.org"
+  - 0 issuewild "pki.goog; cansignhttpexchanges=yes"
+  - 0 issuewild "ssl.com"
+  - 0 issue "amazon.com"
+  - 0 issue "comodoca.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
