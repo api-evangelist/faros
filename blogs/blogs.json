@@ -1,0 +1,14 @@
+{
+  "repo": "faros",
+  "feeds": [
+    {
+      "source": "https://www.faros.ai/blog",
+      "feed_url": "https://www.faros.ai/blog/rss.xml",
+      "title": "",
+      "saved": 13,
+      "method": "discovered"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 23
+}
