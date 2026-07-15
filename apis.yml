@@ -104,6 +104,8 @@ apis:
     Faros. Each webhook definition provides a unique URL of the form
     POST /webhooks/{webhook_id}/events for delivering events to the platform.
 common:
+- type: AgenticAccess
+  url: agentic-access/faros-agentic-access.yml
 - type: TrustCenter
   url: security/faros-trust-center.yml
 - type: DomainSecurity
