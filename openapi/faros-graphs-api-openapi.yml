@@ -1,0 +1,91 @@
+openapi: 3.0.1
+info:
+  title: Faros AI Account Graphs API
+  description: REST surface for the Faros AI engineering-operations intelligence platform. Covers account/identity, graph management, event and data ingestion, inbound webhooks, and the GraphQL query endpoint over the Faros canonical model. All requests are authenticated with a Faros API key passed in the Authorization header. Endpoint paths are modeled from the public Faros documentation, faros-js-client, and faros-events-cli; verify against the Faros API reference for exact request/response schemas.
+  termsOfService: https://www.faros.ai/legal/terms-of-service
+  contact:
+    name: Faros AI Support
+    email: support@faros.ai
+    url: https://docs.faros.ai
+  version: '1.0'
+servers:
+- url: https://prod.api.faros.ai
+  description: Faros production API
+security:
+- apiKey: []
+tags:
+- name: Graphs
+paths:
+  /graphs:
+    get:
+      operationId: listGraphs
+      tags:
+      - Graphs
+      summary: List graphs in the account.
+      description: Lists the named graphs available to the account. The canonical graph is typically named "default".
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  graphs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Graph'
+  /graphs/{graph}:
+    parameters:
+    - $ref: '#/components/parameters/graph'
+    get:
+      operationId: getGraph
+      tags:
+      - Graphs
+      summary: Get a single graph.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Graph'
+    put:
+      operationId: createOrUpdateGraph
+      tags:
+      - Graphs
+      summary: Create or update a graph.
+      responses:
+        '200':
+          description: OK
+    delete:
+      operationId: deleteGraph
+      tags:
+      - Graphs
+      summary: Delete a graph.
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    graph:
+      name: graph
+      in: path
+      required: true
+      description: The name of the graph, e.g. "default".
+      schema:
+        type: string
+  schemas:
+    Graph:
+      type: object
+      properties:
+        name:
+          type: string
+        tenantId:
+          type: string
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Faros API key created in the Faros application under Settings -> API Keys. Passed directly in the Authorization header.

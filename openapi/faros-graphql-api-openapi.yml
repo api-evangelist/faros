@@ -1,0 +1,79 @@
+openapi: 3.0.1
+info:
+  title: Faros AI Account GraphQL API
+  description: REST surface for the Faros AI engineering-operations intelligence platform. Covers account/identity, graph management, event and data ingestion, inbound webhooks, and the GraphQL query endpoint over the Faros canonical model. All requests are authenticated with a Faros API key passed in the Authorization header. Endpoint paths are modeled from the public Faros documentation, faros-js-client, and faros-events-cli; verify against the Faros API reference for exact request/response schemas.
+  termsOfService: https://www.faros.ai/legal/terms-of-service
+  contact:
+    name: Faros AI Support
+    email: support@faros.ai
+    url: https://docs.faros.ai
+  version: '1.0'
+servers:
+- url: https://prod.api.faros.ai
+  description: Faros production API
+security:
+- apiKey: []
+tags:
+- name: GraphQL
+paths:
+  /graphs/{graph}/graphql:
+    parameters:
+    - $ref: '#/components/parameters/graph'
+    post:
+      operationId: queryGraph
+      tags:
+      - GraphQL
+      summary: Execute a GraphQL query or mutation against a graph.
+      description: Hasura-backed GraphQL endpoint over the Faros canonical model. Accepts a standard GraphQL request body (query, variables, operationName) and returns a GraphQL response. Used to query SDLC entities and to write data via GraphQL mutations.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLResponse'
+components:
+  schemas:
+    GraphQLRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+        variables:
+          type: object
+          additionalProperties: true
+        operationName:
+          type: string
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+  parameters:
+    graph:
+      name: graph
+      in: path
+      required: true
+      description: The name of the graph, e.g. "default".
+      schema:
+        type: string
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Faros API key created in the Faros application under Settings -> API Keys. Passed directly in the Authorization header.
