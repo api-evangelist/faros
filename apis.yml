@@ -8,7 +8,20 @@ description: Faros AI is an engineering-operations intelligence platform (softwa
   a REST API for events and data ingestion at https://prod.api.faros.ai plus a
   GraphQL query API over the canonical model, with an open-source Faros Community
   Edition.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/faros.png
 tags:
 - Engineering Operations
 - Software Engineering Intelligence
@@ -20,89 +33,150 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: faros:faros-events-ingestion-rest-api
-  name: Faros Events / Ingestion API (REST)
-  tags:
-  - Events
-  - Ingestion
-  - REST
-  - CI/CD
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: faros:faros-account-api
+  name: Faros AI Account API
+  description: The Account API from Faros AI — 2 operation(s) for account.
   humanURL: https://docs.faros.ai/reference/getting-api-access
   baseURL: https://prod.api.faros.ai
+  tags:
+  - Account
   properties:
-  - url: https://docs.faros.ai/reference/getting-api-access
-    type: Documentation
-  - url: https://docs.faros.ai/docs/the-custom-flows-api
-    type: APIReference
-  - url: openapi/faros-openapi.yml
-    type: OpenAPI
-  description: REST API for ingesting events and writing data into the Faros canonical
-    model. Uses an API key passed in the Authorization header against the
-    https://prod.api.faros.ai base URL, with endpoints for account/identity,
-    graph management, and event ingestion. Backed by the open-source faros-events-cli
-    and faros-js-client.
-- aid: faros:faros-graphql-query-api
-  name: Faros GraphQL Query API
+  - type: OpenAPI
+    url: openapi/faros-account-api-openapi.yml
+  - type: Documentation
+    url: https://docs.faros.ai/reference/getting-api-access
+  - type: APIReference
+    url: https://docs.faros.ai/docs/the-custom-flows-api
+  - type: Documentation
+    url: https://docs.faros.ai/docs/querying-data
+  - type: APIReference
+    url: https://docs.faros.ai/docs/using-graphiql-application-to-query-data
+  - type: GraphQL
+    url: graphql/faros-graphql.md
+  - type: APIReference
+    url: https://github.com/faros-ai/faros-events-cli
+  - type: Documentation
+    url: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
+- aid: faros:faros-events-api
+  name: Faros AI Events API
+  description: The Events API from Faros AI — 1 operation(s) for events.
+  humanURL: https://docs.faros.ai/reference/getting-api-access
+  baseURL: https://prod.api.faros.ai
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/faros-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.faros.ai/reference/getting-api-access
+  - type: APIReference
+    url: https://docs.faros.ai/docs/the-custom-flows-api
+  - type: Documentation
+    url: https://docs.faros.ai/docs/querying-data
+  - type: APIReference
+    url: https://docs.faros.ai/docs/using-graphiql-application-to-query-data
+  - type: GraphQL
+    url: graphql/faros-graphql.md
+  - type: APIReference
+    url: https://github.com/faros-ai/faros-events-cli
+  - type: Documentation
+    url: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
+- aid: faros:faros-graphql-api
+  name: Faros AI GraphQL API
+  description: The GraphQL API from Faros AI — 1 operation(s) for graphql.
+  humanURL: https://docs.faros.ai/reference/getting-api-access
+  baseURL: https://prod.api.faros.ai
   tags:
   - GraphQL
-  - Query
-  - Canonical Model
-  - Hasura
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.faros.ai/docs/querying-data
-  baseURL: https://prod.api.faros.ai
   properties:
-  - url: https://docs.faros.ai/docs/querying-data
-    type: Documentation
-  - url: https://docs.faros.ai/docs/using-graphiql-application-to-query-data
-    type: APIReference
-  - url: graphql/faros-graphql.md
-    type: GraphQL
-  - url: openapi/faros-openapi.yml
-    type: OpenAPI
-  description: Hasura-powered GraphQL API for querying the connected canonical model
-    spanning the whole SDLC (50+ entities across VCS, CI/CD, task management, QA,
-    incident management, compute, and org namespaces). Queries are issued to
-    POST /graphs/{graph}/graphql, where graph is typically "default".
-- aid: faros:faros-deployments-ci-cd-api
-  name: Faros Deployments / CI-CD API
+  - type: OpenAPI
+    url: openapi/faros-graphql-api-openapi.yml
+  - type: Documentation
+    url: https://docs.faros.ai/reference/getting-api-access
+  - type: APIReference
+    url: https://docs.faros.ai/docs/the-custom-flows-api
+  - type: Documentation
+    url: https://docs.faros.ai/docs/querying-data
+  - type: APIReference
+    url: https://docs.faros.ai/docs/using-graphiql-application-to-query-data
+  - type: GraphQL
+    url: graphql/faros-graphql.md
+  - type: APIReference
+    url: https://github.com/faros-ai/faros-events-cli
+  - type: Documentation
+    url: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
+- aid: faros:faros-graphs-api
+  name: Faros AI Graphs API
+  description: The Graphs API from Faros AI — 2 operation(s) for graphs.
+  humanURL: https://docs.faros.ai/reference/getting-api-access
+  baseURL: https://prod.api.faros.ai
   tags:
-  - Deployments
-  - CI/CD
-  - Builds
-  - DORA Metrics
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/faros-ai/faros-events-cli
-  baseURL: https://prod.api.faros.ai
+  - Graphs
   properties:
-  - url: https://docs.faros.ai/reference/getting-api-access
-    type: Documentation
-  - url: https://github.com/faros-ai/faros-events-cli
-    type: APIReference
-  - url: openapi/faros-openapi.yml
-    type: OpenAPI
-  description: Reports CI (build), CD (deployment), and TestExecution events into
-    the platform to power DORA metrics and delivery analytics. Surfaced through the
-    events ingestion REST API and the faros-events-cli / faros-cicd-github-action
-    open-source tooling.
+  - type: OpenAPI
+    url: openapi/faros-graphs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.faros.ai/reference/getting-api-access
+  - type: APIReference
+    url: https://docs.faros.ai/docs/the-custom-flows-api
+  - type: Documentation
+    url: https://docs.faros.ai/docs/querying-data
+  - type: APIReference
+    url: https://docs.faros.ai/docs/using-graphiql-application-to-query-data
+  - type: GraphQL
+    url: graphql/faros-graphql.md
+  - type: APIReference
+    url: https://github.com/faros-ai/faros-events-cli
+  - type: Documentation
+    url: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
+- aid: faros:faros-ingestion-api
+  name: Faros AI Ingestion API
+  description: The Ingestion API from Faros AI — 2 operation(s) for ingestion.
+  humanURL: https://docs.faros.ai/reference/getting-api-access
+  baseURL: https://prod.api.faros.ai
+  tags:
+  - Ingestion
+  properties:
+  - type: OpenAPI
+    url: openapi/faros-ingestion-api-openapi.yml
+  - type: Documentation
+    url: https://docs.faros.ai/reference/getting-api-access
+  - type: APIReference
+    url: https://docs.faros.ai/docs/the-custom-flows-api
+  - type: Documentation
+    url: https://docs.faros.ai/docs/querying-data
+  - type: APIReference
+    url: https://docs.faros.ai/docs/using-graphiql-application-to-query-data
+  - type: GraphQL
+    url: graphql/faros-graphql.md
+  - type: APIReference
+    url: https://github.com/faros-ai/faros-events-cli
+  - type: Documentation
+    url: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
 - aid: faros:faros-webhooks-api
-  name: Faros Webhooks API
+  name: Faros AI Webhooks API
+  description: The Webhooks API from Faros AI — 1 operation(s) for webhooks.
+  humanURL: https://docs.faros.ai/reference/getting-api-access
+  baseURL: https://prod.api.faros.ai
   tags:
   - Webhooks
-  - Events
-  - Ingestion
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
-  baseURL: https://prod.api.faros.ai
   properties:
-  - url: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
-    type: Documentation
-  - url: openapi/faros-openapi.yml
-    type: OpenAPI
-  description: Inbound webhook endpoints that let source systems push events into
-    Faros. Each webhook definition provides a unique URL of the form
-    POST /webhooks/{webhook_id}/events for delivering events to the platform.
+  - type: OpenAPI
+    url: openapi/faros-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.faros.ai/reference/getting-api-access
+  - type: APIReference
+    url: https://docs.faros.ai/docs/the-custom-flows-api
+  - type: Documentation
+    url: https://docs.faros.ai/docs/querying-data
+  - type: APIReference
+    url: https://docs.faros.ai/docs/using-graphiql-application-to-query-data
+  - type: GraphQL
+    url: graphql/faros-graphql.md
+  - type: APIReference
+    url: https://github.com/faros-ai/faros-events-cli
+  - type: Documentation
+    url: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
 common:
 - type: AgenticAccess
   url: agentic-access/faros-agentic-access.yml
