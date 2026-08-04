@@ -1,0 +1,339 @@
+openapi: 3.0.1
+info:
+  title: Faros AI API
+  description: >-
+    REST surface for the Faros AI engineering-operations intelligence platform.
+    Covers account/identity, graph management, event and data ingestion,
+    inbound webhooks, and the GraphQL query endpoint over the Faros canonical
+    model. All requests are authenticated with a Faros API key passed in the
+    Authorization header. Endpoint paths are modeled from the public Faros
+    documentation, faros-js-client, and faros-events-cli; verify against the
+    Faros API reference for exact request/response schemas.
+  termsOfService: https://www.faros.ai/legal/terms-of-service
+  contact:
+    name: Faros AI Support
+    email: support@faros.ai
+    url: https://docs.faros.ai
+  version: '1.0'
+servers:
+  - url: https://prod.api.faros.ai
+    description: Faros production API
+security:
+  - apiKey: []
+paths:
+  /users/me:
+    get:
+      operationId: getCurrentUser
+      tags:
+        - Account
+      summary: Get the current authenticated user.
+      description: >-
+        Returns the identity and account context associated with the API key
+        used in the Authorization header.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+  /accounts:
+    get:
+      operationId: listAccounts
+      tags:
+        - Account
+      summary: List accounts accessible to the caller.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accounts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Account'
+  /graphs:
+    get:
+      operationId: listGraphs
+      tags:
+        - Graphs
+      summary: List graphs in the account.
+      description: >-
+        Lists the named graphs available to the account. The canonical graph
+        is typically named "default".
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  graphs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Graph'
+  /graphs/{graph}:
+    parameters:
+      - $ref: '#/components/parameters/graph'
+    get:
+      operationId: getGraph
+      tags:
+        - Graphs
+      summary: Get a single graph.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Graph'
+    put:
+      operationId: createOrUpdateGraph
+      tags:
+        - Graphs
+      summary: Create or update a graph.
+      responses:
+        '200':
+          description: OK
+    delete:
+      operationId: deleteGraph
+      tags:
+        - Graphs
+      summary: Delete a graph.
+      responses:
+        '200':
+          description: OK
+  /graphs/{graph}/graphql:
+    parameters:
+      - $ref: '#/components/parameters/graph'
+    post:
+      operationId: queryGraph
+      tags:
+        - GraphQL
+      summary: Execute a GraphQL query or mutation against a graph.
+      description: >-
+        Hasura-backed GraphQL endpoint over the Faros canonical model. Accepts
+        a standard GraphQL request body (query, variables, operationName) and
+        returns a GraphQL response. Used to query SDLC entities and to write
+        data via GraphQL mutations.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLResponse'
+  /graphs/{graph}/models:
+    parameters:
+      - $ref: '#/components/parameters/graph'
+    get:
+      operationId: listModels
+      tags:
+        - Ingestion
+      summary: List canonical models available in the graph.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  models:
+                    type: array
+                    items:
+                      type: string
+    post:
+      operationId: writeModelRecords
+      tags:
+        - Ingestion
+      summary: Write canonical model records into the graph.
+      description: >-
+        Ingests records that conform to the Faros canonical model (for example
+        cicd_Deployment, cicd_Build, vcs_PullRequest, tms_Task). Records are
+        upserted into the graph and reconciled against existing entities.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelRecordBatch'
+      responses:
+        '200':
+          description: OK
+  /graphs/{graph}/revisions:
+    parameters:
+      - $ref: '#/components/parameters/graph'
+    post:
+      operationId: createRevision
+      tags:
+        - Ingestion
+      summary: Create an ingestion revision.
+      description: >-
+        Opens a revision that groups a batch of model writes for the graph,
+        used to coordinate and track an ingestion run.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+  /graphs/{graph}/events:
+    parameters:
+      - $ref: '#/components/parameters/graph'
+    post:
+      operationId: sendEvents
+      tags:
+        - Events
+      summary: Report CI/CD and test events to a graph.
+      description: >-
+        Reports CI (build), CD (deployment), and TestExecution events into the
+        graph. This is the surface used by faros-events-cli and the Faros CI/CD
+        GitHub Action to power DORA and delivery metrics.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventBatch'
+      responses:
+        '200':
+          description: OK
+  /webhooks/{webhook_id}/events:
+    parameters:
+      - name: webhook_id
+        in: path
+        required: true
+        description: The id from the webhook definition created in the Faros app.
+        schema:
+          type: string
+    post:
+      operationId: deliverWebhookEvents
+      tags:
+        - Webhooks
+      summary: Deliver events to a configured webhook.
+      description: >-
+        Inbound webhook endpoint. Each webhook definition in the Faros
+        application provides a unique URL of this form; source systems POST
+        their event payloads here for ingestion.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Faros API key created in the Faros application under
+        Settings -> API Keys. Passed directly in the Authorization header.
+  parameters:
+    graph:
+      name: graph
+      in: path
+      required: true
+      description: The name of the graph, e.g. "default".
+      schema:
+        type: string
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        tenantId:
+          type: string
+    Account:
+      type: object
+      properties:
+        accountId:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+    Graph:
+      type: object
+      properties:
+        name:
+          type: string
+        tenantId:
+          type: string
+    GraphQLRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+        variables:
+          type: object
+          additionalProperties: true
+        operationName:
+          type: string
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    ModelRecordBatch:
+      type: object
+      properties:
+        origin:
+          type: string
+          description: Source identifier for the ingested records.
+        entries:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+            description: >-
+              A canonical model record keyed by entity type, e.g.
+              { "cicd_Deployment": { ... } }.
+    Revision:
+      type: object
+      properties:
+        revision:
+          type: string
+        status:
+          type: string
+    EventBatch:
+      type: object
+      properties:
+        origin:
+          type: string
+        events:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+            description: A CI, CD, or TestExecution event payload.

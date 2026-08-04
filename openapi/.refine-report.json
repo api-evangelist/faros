@@ -1,0 +1,24 @@
+{
+  "provider": "faros",
+  "sources": [
+    "faros-account-api-openapi.yml",
+    "faros-events-api-openapi.yml",
+    "faros-graphql-api-openapi.yml",
+    "faros-graphs-api-openapi.yml",
+    "faros-ingestion-api-openapi.yml",
+    "faros-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "faros-account-api-openapi.yml",
+    "faros-events-api-openapi.yml",
+    "faros-graphql-api-openapi.yml",
+    "faros-graphs-api-openapi.yml",
+    "faros-ingestion-api-openapi.yml",
+    "faros-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
