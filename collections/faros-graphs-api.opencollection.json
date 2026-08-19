@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Faros AI Account Graphs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Graphs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List graphs in the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.api.faros.ai/graphs"
+          },
+          "docs": "Lists the named graphs available to the account. The canonical graph is typically named \"default\"."
+        },
+        {
+          "info": {
+            "name": "Get a single graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.api.faros.ai/graphs/:graph",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "path",
+                "description": "The name of the graph, e.g. \"default\"."
+              }
+            ]
+          },
+          "docs": "Get a single graph."
+        },
+        {
+          "info": {
+            "name": "Create or update a graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://prod.api.faros.ai/graphs/:graph",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "path",
+                "description": "The name of the graph, e.g. \"default\"."
+              }
+            ]
+          },
+          "docs": "Create or update a graph."
+        },
+        {
+          "info": {
+            "name": "Delete a graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://prod.api.faros.ai/graphs/:graph",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "path",
+                "description": "The name of the graph, e.g. \"default\"."
+              }
+            ]
+          },
+          "docs": "Delete a graph."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

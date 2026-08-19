@@ -1,0 +1,160 @@
+{
+  "item": [
+    {
+      "id": "ab3c0058-8cde-44c5-96ad-a16df1c3533d",
+      "name": "Events",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1d49ed7-bb15-40b6-8872-5ad246610dbf",
+          "name": "Report CI/CD and test events to a graph.",
+          "request": {
+            "name": "Report CI/CD and test events to a graph.",
+            "description": {
+              "content": "Reports CI (build), CD (deployment), and TestExecution events into the graph. This is the surface used by faros-events-cli and the Faros CI/CD GitHub Action to power DORA and delivery metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graphs",
+                ":graph",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graph",
+                  "description": "(Required) The name of the graph, e.g. \"default\"."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"origin\": \"<string>\",\n  \"events\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 4956.898931218972,\n      \"key_1\": 9933\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "746bd3cf-8a19-48b4-8f08-84e26c5f3c21",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graph",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The name of the graph, e.g. \"default\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"origin\": \"<string>\",\n  \"events\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": 4079,\n      \"key_1\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://prod.api.faros.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "52e2b8c0-15ca-4fec-afca-1314c4f64c75",
+    "name": "Faros AI Account Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST surface for the Faros AI engineering-operations intelligence platform. Covers account/identity, graph management, event and data ingestion, inbound webhooks, and the GraphQL query endpoint over the Faros canonical model. All requests are authenticated with a Faros API key passed in the Authorization header. Endpoint paths are modeled from the public Faros documentation, faros-js-client, and faros-events-cli; verify against the Faros API reference for exact request/response schemas.\n\nContact Support:\n Name: Faros AI Support\n Email: support@faros.ai",
+      "type": "text/plain"
+    }
+  }
+}

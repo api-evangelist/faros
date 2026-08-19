@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Faros AI Account API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the current authenticated user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.api.faros.ai/users/me"
+          },
+          "docs": "Returns the identity and account context associated with the API key used in the Authorization header."
+        },
+        {
+          "info": {
+            "name": "List accounts accessible to the caller.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.api.faros.ai/accounts"
+          },
+          "docs": "List accounts accessible to the caller."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

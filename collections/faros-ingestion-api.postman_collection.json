@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "affe4d4a-f74e-4292-9c20-6be0cab2110a",
+      "name": "Ingestion",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "926b66b2-ca88-4e31-89c9-cd689b4f00d4",
+          "name": "List canonical models available in the graph.",
+          "request": {
+            "name": "List canonical models available in the graph.",
+            "description": {},
+            "url": {
+              "path": [
+                "graphs",
+                ":graph",
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graph",
+                  "description": "(Required) The name of the graph, e.g. \"default\"."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73cf3473-8468-46c3-9465-9c87836b839d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graph",
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The name of the graph, e.g. \"default\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"models\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d6618e5-093a-429b-897e-1f2839059244",
+          "name": "Write canonical model records into the graph.",
+          "request": {
+            "name": "Write canonical model records into the graph.",
+            "description": {
+              "content": "Ingests records that conform to the Faros canonical model (for example cicd_Deployment, cicd_Build, vcs_PullRequest, tms_Task). Records are upserted into the graph and reconciled against existing entities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graphs",
+                ":graph",
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graph",
+                  "description": "(Required) The name of the graph, e.g. \"default\"."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"origin\": \"<string>\",\n  \"entries\": [\n    {\n      \"key_0\": 3982.063283753018\n    },\n    {\n      \"key_0\": 4554.505989335899\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb9f9706-dda0-4110-8bfd-6db49b82ecc5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graph",
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The name of the graph, e.g. \"default\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"origin\": \"<string>\",\n  \"entries\": [\n    {\n      \"key_0\": 9854.273085649605,\n      \"key_1\": 2326\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0eb091d-668f-401f-8234-57fb832c787f",
+          "name": "Create an ingestion revision.",
+          "request": {
+            "name": "Create an ingestion revision.",
+            "description": {
+              "content": "Opens a revision that groups a batch of model writes for the graph, used to coordinate and track an ingestion run.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graphs",
+                ":graph",
+                "revisions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graph",
+                  "description": "(Required) The name of the graph, e.g. \"default\"."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03135572-e5e6-4b3f-96f0-eb6e66088111",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graph",
+                    "revisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The name of the graph, e.g. \"default\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"revision\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://prod.api.faros.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7eea50e6-1c05-4531-880d-e7f08c1786bf",
+    "name": "Faros AI Account Ingestion API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST surface for the Faros AI engineering-operations intelligence platform. Covers account/identity, graph management, event and data ingestion, inbound webhooks, and the GraphQL query endpoint over the Faros canonical model. All requests are authenticated with a Faros API key passed in the Authorization header. Endpoint paths are modeled from the public Faros documentation, faros-js-client, and faros-events-cli; verify against the Faros API reference for exact request/response schemas.\n\nContact Support:\n Name: Faros AI Support\n Email: support@faros.ai",
+      "type": "text/plain"
+    }
+  }
+}

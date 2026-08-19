@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Faros AI Account Events API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Report CI/CD and test events to a graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.api.faros.ai/graphs/:graph/events",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "path",
+                "description": "The name of the graph, e.g. \"default\"."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reports CI (build), CD (deployment), and TestExecution events into the graph. This is the surface used by faros-events-cli and the Faros CI/CD GitHub Action to power DORA and delivery metrics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

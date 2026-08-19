@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Faros AI Account Ingestion API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ingestion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List canonical models available in the graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://prod.api.faros.ai/graphs/:graph/models",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "path",
+                "description": "The name of the graph, e.g. \"default\"."
+              }
+            ]
+          },
+          "docs": "List canonical models available in the graph."
+        },
+        {
+          "info": {
+            "name": "Write canonical model records into the graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.api.faros.ai/graphs/:graph/models",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "path",
+                "description": "The name of the graph, e.g. \"default\"."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ingests records that conform to the Faros canonical model (for example cicd_Deployment, cicd_Build, vcs_PullRequest, tms_Task). Records are upserted into the graph and reconciled against existing entities."
+        },
+        {
+          "info": {
+            "name": "Create an ingestion revision.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.api.faros.ai/graphs/:graph/revisions",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "path",
+                "description": "The name of the graph, e.g. \"default\"."
+              }
+            ]
+          },
+          "docs": "Opens a revision that groups a batch of model writes for the graph, used to coordinate and track an ingestion run."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

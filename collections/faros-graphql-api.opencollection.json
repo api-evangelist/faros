@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Faros AI Account GraphQL API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GraphQL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute a GraphQL query or mutation against a graph.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://prod.api.faros.ai/graphs/:graph/graphql",
+            "params": [
+              {
+                "name": "graph",
+                "value": "",
+                "type": "path",
+                "description": "The name of the graph, e.g. \"default\"."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Hasura-backed GraphQL endpoint over the Faros canonical model. Accepts a standard GraphQL request body (query, variables, operationName) and returns a GraphQL response. Used to query SDLC entities and to write data via GraphQL mutations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

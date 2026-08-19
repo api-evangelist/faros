@@ -1,0 +1,386 @@
+{
+  "item": [
+    {
+      "id": "87f505fc-e260-43ca-98f2-e9bc99739d66",
+      "name": "Graphs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c602687f-2a63-40c9-b572-16bce72d1bb9",
+          "name": "List graphs in the account.",
+          "request": {
+            "name": "List graphs in the account.",
+            "description": {
+              "content": "Lists the named graphs available to the account. The canonical graph is typically named \"default\".",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graphs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddb38f4f-b8bf-4614-bada-e5dee704face",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"graphs\": [\n    {\n      \"name\": \"string\",\n      \"tenantId\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"tenantId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "069350b4-d92f-4144-87b7-f7fc6e60f115",
+          "name": "Get a single graph.",
+          "request": {
+            "name": "Get a single graph.",
+            "description": {},
+            "url": {
+              "path": [
+                "graphs",
+                ":graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graph",
+                  "description": "(Required) The name of the graph, e.g. \"default\"."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06057d37-ecf3-40c3-a296-393a7870fc28",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The name of the graph, e.g. \"default\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"tenantId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c1c7f4a-063c-433e-ada1-2bd25cecb430",
+          "name": "Create or update a graph.",
+          "request": {
+            "name": "Create or update a graph.",
+            "description": {},
+            "url": {
+              "path": [
+                "graphs",
+                ":graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graph",
+                  "description": "(Required) The name of the graph, e.g. \"default\"."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2313439-fd30-405a-8b2b-a2697d703125",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The name of the graph, e.g. \"default\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cd00c64-e609-40ae-8e70-67d6e9da975c",
+          "name": "Delete a graph.",
+          "request": {
+            "name": "Delete a graph.",
+            "description": {},
+            "url": {
+              "path": [
+                "graphs",
+                ":graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "graph",
+                  "description": "(Required) The name of the graph, e.g. \"default\"."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb830637-5de4-4600-82c5-b600fb5c1eab",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphs",
+                    ":graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "graph",
+                      "description": "(Required) The name of the graph, e.g. \"default\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://prod.api.faros.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "826a9d8d-ed0c-4d99-a2ba-eaa234fb8f03",
+    "name": "Faros AI Account Graphs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST surface for the Faros AI engineering-operations intelligence platform. Covers account/identity, graph management, event and data ingestion, inbound webhooks, and the GraphQL query endpoint over the Faros canonical model. All requests are authenticated with a Faros API key passed in the Authorization header. Endpoint paths are modeled from the public Faros documentation, faros-js-client, and faros-events-cli; verify against the Faros API reference for exact request/response schemas.\n\nContact Support:\n Name: Faros AI Support\n Email: support@faros.ai",
+      "type": "text/plain"
+    }
+  }
+}
