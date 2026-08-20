@@ -63,6 +63,8 @@ apis:
   humanURL: https://docs.faros.ai/reference/getting-api-access
   baseURL: https://prod.api.faros.ai
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -159,6 +161,8 @@ apis:
   humanURL: https://docs.faros.ai/reference/getting-api-access
   baseURL: https://prod.api.faros.ai
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
