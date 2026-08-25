@@ -5,7 +5,7 @@
       "source": "https://www.faros.ai/blog/rss.xml",
       "feed_url": "https://www.faros.ai/blog/rss.xml",
       "title": "",
-      "saved": 6,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -16,6 +16,6 @@
       "method": "discovered"
     }
   ],
-  "fetched": "2026-08-15T12:22:01Z",
-  "post_count": 101
+  "fetched": "2026-08-22T20:20:02Z",
+  "post_count": 103
 }
