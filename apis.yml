@@ -8,6 +8,18 @@ description: Faros AI is an engineering-operations intelligence platform (softwa
   a REST API for events and data ingestion at https://prod.api.faros.ai plus a
   GraphQL query API over the canonical model, with an open-source Faros Community
   Edition.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
