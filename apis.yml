@@ -96,30 +96,6 @@ apis:
     url: https://github.com/faros-ai/faros-events-cli
   - type: Documentation
     url: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
-- aid: faros:faros-graphql-api
-  name: Faros AI GraphQL API
-  description: The GraphQL API from Faros AI — 1 operation(s) for graphql.
-  humanURL: https://docs.faros.ai/reference/getting-api-access
-  baseURL: https://prod.api.faros.ai
-  tags:
-  - GraphQL
-  properties:
-  - type: OpenAPI
-    url: openapi/faros-graphql-api-openapi.yml
-  - type: Documentation
-    url: https://docs.faros.ai/reference/getting-api-access
-  - type: APIReference
-    url: https://docs.faros.ai/docs/the-custom-flows-api
-  - type: Documentation
-    url: https://docs.faros.ai/docs/querying-data
-  - type: APIReference
-    url: https://docs.faros.ai/docs/using-graphiql-application-to-query-data
-  - type: GraphQL
-    url: graphql/faros-graphql.md
-  - type: APIReference
-    url: https://github.com/faros-ai/faros-events-cli
-  - type: Documentation
-    url: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
 - aid: faros:faros-graphs-api
   name: Faros AI Graphs API
   description: The Graphs API from Faros AI — 2 operation(s) for graphs.
@@ -180,6 +156,30 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/faros-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.faros.ai/reference/getting-api-access
+  - type: APIReference
+    url: https://docs.faros.ai/docs/the-custom-flows-api
+  - type: Documentation
+    url: https://docs.faros.ai/docs/querying-data
+  - type: APIReference
+    url: https://docs.faros.ai/docs/using-graphiql-application-to-query-data
+  - type: GraphQL
+    url: graphql/faros-graphql.md
+  - type: APIReference
+    url: https://github.com/faros-ai/faros-events-cli
+  - type: Documentation
+    url: https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks
+- aid: faros:faros-graph-ql-api
+  name: Faros AI Graph QL API
+  description: The Graph QL API from Faros AI — 1 operation(s) for graph ql.
+  humanURL: https://docs.faros.ai/reference/getting-api-access
+  baseURL: https://prod.api.faros.ai
+  tags:
+  - Graph QL
+  properties:
+  - type: OpenAPI
+    url: openapi/faros-graph-ql-api-openapi.yml
   - type: Documentation
     url: https://docs.faros.ai/reference/getting-api-access
   - type: APIReference
