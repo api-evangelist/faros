@@ -176,6 +176,8 @@ apis:
   humanURL: https://docs.faros.ai/reference/getting-api-access
   baseURL: https://prod.api.faros.ai
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
