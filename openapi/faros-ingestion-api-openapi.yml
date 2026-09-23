@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Faros AI Account Ingestion API
+  title: Faros AI Ingestion API
   description: REST surface for the Faros AI engineering-operations intelligence platform. Covers account/identity, graph management, event and data ingestion, inbound webhooks, and the GraphQL query endpoint over the Faros canonical model. All requests are authenticated with a Faros API key passed in the Authorization header. Endpoint paths are modeled from the public Faros documentation, faros-js-client, and faros-events-cli; verify against the Faros API reference for exact request/response schemas.
   termsOfService: https://www.faros.ai/legal/terms-of-service
   contact:
@@ -23,7 +23,7 @@ paths:
       operationId: listModels
       tags:
       - Ingestion
-      summary: List canonical models available in the graph.
+      summary: List canonical models available in the graph
       responses:
         '200':
           description: OK
@@ -40,7 +40,7 @@ paths:
       operationId: writeModelRecords
       tags:
       - Ingestion
-      summary: Write canonical model records into the graph.
+      summary: Write canonical model records into the graph
       description: Ingests records that conform to the Faros canonical model (for example cicd_Deployment, cicd_Build, vcs_PullRequest, tms_Task). Records are upserted into the graph and reconciled against existing entities.
       requestBody:
         required: true
@@ -58,7 +58,7 @@ paths:
       operationId: createRevision
       tags:
       - Ingestion
-      summary: Create an ingestion revision.
+      summary: Create an ingestion revision
       description: Opens a revision that groups a batch of model writes for the graph, used to coordinate and track an ingestion run.
       responses:
         '200':
@@ -68,15 +68,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Revision'
 components:
-  parameters:
-    graph:
-      name: graph
-      in: path
-      required: true
-      description: The name of the graph, e.g. "default".
-      schema:
-        type: string
   schemas:
+    Revision:
+      type: object
+      properties:
+        revision:
+          type: string
+        status:
+          type: string
     ModelRecordBatch:
       type: object
       properties:
@@ -89,13 +88,14 @@ components:
             type: object
             additionalProperties: true
             description: 'A canonical model record keyed by entity type, e.g. { "cicd_Deployment": { ... } }.'
-    Revision:
-      type: object
-      properties:
-        revision:
-          type: string
-        status:
-          type: string
+  parameters:
+    graph:
+      name: graph
+      in: path
+      required: true
+      description: The name of the graph, e.g. "default".
+      schema:
+        type: string
   securitySchemes:
     apiKey:
       type: apiKey

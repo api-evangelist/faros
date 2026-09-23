@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Faros AI Account Webhooks API
+  title: Faros AI Webhooks API
   description: REST surface for the Faros AI engineering-operations intelligence platform. Covers account/identity, graph management, event and data ingestion, inbound webhooks, and the GraphQL query endpoint over the Faros canonical model. All requests are authenticated with a Faros API key passed in the Authorization header. Endpoint paths are modeled from the public Faros documentation, faros-js-client, and faros-events-cli; verify against the Faros API reference for exact request/response schemas.
   termsOfService: https://www.faros.ai/legal/terms-of-service
   contact:
@@ -28,7 +28,7 @@ paths:
       operationId: deliverWebhookEvents
       tags:
       - Webhooks
-      summary: Deliver events to a configured webhook.
+      summary: Deliver events to a configured webhook
       description: Inbound webhook endpoint. Each webhook definition in the Faros application provides a unique URL of this form; source systems POST their event payloads here for ingestion.
       requestBody:
         required: true

@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Faros AI Account API
   description: REST surface for the Faros AI engineering-operations intelligence platform. Covers account/identity, graph management, event and data ingestion, inbound webhooks, and the GraphQL query endpoint over the Faros canonical model. All requests are authenticated with a Faros API key passed in the Authorization header. Endpoint paths are modeled from the public Faros documentation, faros-js-client, and faros-events-cli; verify against the Faros API reference for exact request/response schemas.
@@ -21,7 +21,7 @@ paths:
       operationId: getCurrentUser
       tags:
       - Account
-      summary: Get the current authenticated user.
+      summary: Get the current authenticated user
       description: Returns the identity and account context associated with the API key used in the Authorization header.
       responses:
         '200':
@@ -37,7 +37,7 @@ paths:
       operationId: listAccounts
       tags:
       - Account
-      summary: List accounts accessible to the caller.
+      summary: List accounts accessible to the caller
       responses:
         '200':
           description: OK
@@ -52,15 +52,6 @@ paths:
                       $ref: '#/components/schemas/Account'
 components:
   schemas:
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-        tenantId:
-          type: string
     Account:
       type: object
       properties:
@@ -69,6 +60,15 @@ components:
         name:
           type: string
         type:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        tenantId:
           type: string
   securitySchemes:
     apiKey:

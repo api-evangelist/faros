@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Faros AI Account Graphs API
+  title: Faros AI Graphs API
   description: REST surface for the Faros AI engineering-operations intelligence platform. Covers account/identity, graph management, event and data ingestion, inbound webhooks, and the GraphQL query endpoint over the Faros canonical model. All requests are authenticated with a Faros API key passed in the Authorization header. Endpoint paths are modeled from the public Faros documentation, faros-js-client, and faros-events-cli; verify against the Faros API reference for exact request/response schemas.
   termsOfService: https://www.faros.ai/legal/terms-of-service
   contact:
@@ -21,7 +21,7 @@ paths:
       operationId: listGraphs
       tags:
       - Graphs
-      summary: List graphs in the account.
+      summary: List graphs in the account
       description: Lists the named graphs available to the account. The canonical graph is typically named "default".
       responses:
         '200':
@@ -42,7 +42,7 @@ paths:
       operationId: getGraph
       tags:
       - Graphs
-      summary: Get a single graph.
+      summary: Get a single graph
       responses:
         '200':
           description: OK
@@ -54,7 +54,7 @@ paths:
       operationId: createOrUpdateGraph
       tags:
       - Graphs
-      summary: Create or update a graph.
+      summary: Create or update a graph
       responses:
         '200':
           description: OK
@@ -62,19 +62,11 @@ paths:
       operationId: deleteGraph
       tags:
       - Graphs
-      summary: Delete a graph.
+      summary: Delete a graph
       responses:
         '200':
           description: OK
 components:
-  parameters:
-    graph:
-      name: graph
-      in: path
-      required: true
-      description: The name of the graph, e.g. "default".
-      schema:
-        type: string
   schemas:
     Graph:
       type: object
@@ -83,6 +75,14 @@ components:
           type: string
         tenantId:
           type: string
+  parameters:
+    graph:
+      name: graph
+      in: path
+      required: true
+      description: The name of the graph, e.g. "default".
+      schema:
+        type: string
   securitySchemes:
     apiKey:
       type: apiKey
