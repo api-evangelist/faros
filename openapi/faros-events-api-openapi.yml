@@ -35,6 +35,14 @@ paths:
         '200':
           description: OK
 components:
+  parameters:
+    graph:
+      name: graph
+      in: path
+      required: true
+      description: The name of the graph, e.g. "default".
+      schema:
+        type: string
   schemas:
     EventBatch:
       type: object
@@ -47,14 +55,6 @@ components:
             type: object
             additionalProperties: true
             description: A CI, CD, or TestExecution event payload.
-  parameters:
-    graph:
-      name: graph
-      in: path
-      required: true
-      description: The name of the graph, e.g. "default".
-      schema:
-        type: string
   securitySchemes:
     apiKey:
       type: apiKey
