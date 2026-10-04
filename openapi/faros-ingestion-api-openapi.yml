@@ -68,6 +68,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Revision'
 components:
+  parameters:
+    graph:
+      name: graph
+      in: path
+      required: true
+      description: The name of the graph, e.g. "default".
+      schema:
+        type: string
   schemas:
     Revision:
       type: object
@@ -88,14 +96,6 @@ components:
             type: object
             additionalProperties: true
             description: 'A canonical model record keyed by entity type, e.g. { "cicd_Deployment": { ... } }.'
-  parameters:
-    graph:
-      name: graph
-      in: path
-      required: true
-      description: The name of the graph, e.g. "default".
-      schema:
-        type: string
   securitySchemes:
     apiKey:
       type: apiKey

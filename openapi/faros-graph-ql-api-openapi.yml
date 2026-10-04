@@ -39,18 +39,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/GraphQLResponse'
 components:
+  parameters:
+    graph:
+      name: graph
+      in: path
+      required: true
+      description: The name of the graph, e.g. "default".
+      schema:
+        type: string
   schemas:
-    GraphQLResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties: true
-        errors:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
     GraphQLRequest:
       type: object
       required:
@@ -63,14 +60,17 @@ components:
           additionalProperties: true
         operationName:
           type: string
-  parameters:
-    graph:
-      name: graph
-      in: path
-      required: true
-      description: The name of the graph, e.g. "default".
-      schema:
-        type: string
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
   securitySchemes:
     apiKey:
       type: apiKey
