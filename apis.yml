@@ -35,6 +35,9 @@ accessModel:
   generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/faros.png
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
 - Engineering Operations
 - Software Engineering Intelligence
@@ -176,6 +179,8 @@ apis:
   humanURL: https://docs.faros.ai/reference/getting-api-access
   baseURL: https://prod.api.faros.ai
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
