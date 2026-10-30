@@ -1,4 +1,4 @@
-# Faros AI (faros)
+# Faros AI
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,122 +66,133 @@
 
 Faros AI is an engineering-operations intelligence platform (software engineering intelligence / SEI) that ingests data from across the SDLC toolchain into a connected canonical model and exposes it for querying. The platform offers a REST API for events and data ingestion at https://prod.api.faros.ai plus a GraphQL query API over the canonical model, with an open-source Faros Community Edition.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/faros/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/faros/refs/heads/main/apis.yml)
+**Areas:** Engineering Operations · Software Engineering Intelligence · SEI · DORA Metrics · Developer Productivity · Data Ingestion
 
-## Tags
+## Faros AI on APIs.io
 
-- Engineering Operations
-- Software Engineering Intelligence
-- SEI
-- DORA Metrics
-- Developer Productivity
-- Data Ingestion
+Everything profiled for Faros AI is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/faros/](https://apis.io/providers/faros/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (6)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Faros AI Account API](https://apis.io/apis/faros/faros-account-api/) — The Account API from Faros AI — 2 operation(s) for account.
+- [Faros AI Events API](https://apis.io/apis/faros/faros-events-api/) — The Events API from Faros AI — 1 operation(s) for events.
+- [Faros AI Graphs API](https://apis.io/apis/faros/faros-graphs-api/) — The Graphs API from Faros AI — 2 operation(s) for graphs.
+- [Faros AI Ingestion API](https://apis.io/apis/faros/faros-ingestion-api/) — The Ingestion API from Faros AI — 2 operation(s) for ingestion.
+- [Faros AI Webhooks API](https://apis.io/apis/faros/faros-webhooks-api/) — The Webhooks API from Faros AI — 1 operation(s) for webhooks.
+- [Faros AI Graph QL API](https://apis.io/apis/faros/faros-graph-ql-api/) — The Graph QL API from Faros AI — 1 operation(s) for graph ql.
 
-## APIs
+### Published properties
 
-### Faros Events / Ingestion API (REST)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST API for ingesting events and writing data into the Faros canonical model. Uses an API key passed in the Authorization header against the https://prod.api.faros.ai base URL, with endpoints for account/identity, graph management, and event ingestion. Backed by the open-source faros-events-cli and faros-js-client.
+#### GraphQL (1)
 
-- **Human URL:** [https://docs.faros.ai/reference/getting-api-access](https://docs.faros.ai/reference/getting-api-access)
-- **Base URL:** `https://prod.api.faros.ai`
+GraphQL schemas.
 
-#### Tags
+- [Faros AI GraphQL API](https://apis.io/graphqls/faros/faros-graphql/)
 
-- Events
-- Ingestion
-- REST
-- CI/CD
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://docs.faros.ai/reference/getting-api-access)
-- [API Reference](https://docs.faros.ai/docs/the-custom-flows-api)
-- [OpenAPI](openapi/faros-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/faros.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/faros.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Faros Agentic Access](https://apis.io/agentic-access/faros/faros-agentic-access/)
 
-### Faros GraphQL Query API
+#### Collections (7)
 
-Hasura-powered GraphQL API for querying the connected canonical model spanning the whole SDLC (50+ entities across VCS, CI/CD, task management, QA, incident management, compute, and org namespaces). Queries are issued to POST /graphs/{graph}/graphql, where graph is typically "default".
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://docs.faros.ai/docs/querying-data](https://docs.faros.ai/docs/querying-data)
-- **Base URL:** `https://prod.api.faros.ai`
+- [Faros AI API](https://apis.io/collections/faros/open-faros/)
+- [Faros AI Account API](https://apis.io/collections/faros/open-faros-account-api/)
+- [Faros AI Account Events API](https://apis.io/collections/faros/open-faros-events-api/)
+- [Faros AI Account GraphQL API](https://apis.io/collections/faros/open-faros-graphql-api/)
+- [Faros AI Account Graphs API](https://apis.io/collections/faros/open-faros-graphs-api/)
+- [Faros AI Account Ingestion API](https://apis.io/collections/faros/open-faros-ingestion-api/)
+- [Faros AI Account Webhooks API](https://apis.io/collections/faros/open-faros-webhooks-api/)
 
-#### Tags
+#### Security (3)
 
-- GraphQL
-- Query
-- Canonical Model
-- Hasura
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Faros Authentication](https://apis.io/security/faros/faros-authentication/)
+- [Faros Domain Security](https://apis.io/security/faros/faros-domain-security/)
+- [Faros Trust Center](https://apis.io/security/faros/faros-trust-center/)
 
-- [Documentation](https://docs.faros.ai/docs/querying-data)
-- [API Reference](https://docs.faros.ai/docs/using-graphiql-application-to-query-data)
-- [GraphQL](graphql/faros-graphql.md) — [GraphQL](https://graphql.org/)
-- [OpenAPI](openapi/faros-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/faros.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/faros.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### Faros Deployments / CI-CD API
+Published plans, tiers and prices.
 
-Reports CI (build), CD (deployment), and TestExecution events into the platform to power DORA metrics and delivery analytics. Surfaced through the events ingestion REST API and the faros-events-cli / faros-cicd-github-action open-source tooling.
+- [Faros Plans Pricing](https://apis.io/plans/faros/faros-plans-pricing/)
 
-- **Human URL:** [https://github.com/faros-ai/faros-events-cli](https://github.com/faros-ai/faros-events-cli)
-- **Base URL:** `https://prod.api.faros.ai`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Deployments
-- CI/CD
-- Builds
-- DORA Metrics
+- [Faros Rate Limits](https://apis.io/rate-limits/faros/faros-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://docs.faros.ai/reference/getting-api-access)
-- [API Reference](https://github.com/faros-ai/faros-events-cli)
-- [OpenAPI](openapi/faros-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/faros.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/faros.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### Faros Webhooks API
+- [Faros Finops](https://apis.io/finops/faros/faros-finops/)
 
-Inbound webhook endpoints that let source systems push events into Faros. Each webhook definition provides a unique URL of the form POST /webhooks/{webhook_id}/events for delivering events to the platform.
+## Where to find this API
 
-- **Human URL:** [https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks](https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks)
-- **Base URL:** `https://prod.api.faros.ai`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Webhooks
-- Events
-- Ingestion
-
-#### Properties
-
-- [Documentation](https://docs.faros.ai/docs/configuring-your-source-system-with-webhooks)
-- [OpenAPI](openapi/faros-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/faros.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/faros.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/faros-ai)
-- [LinkedIn](https://www.linkedin.com/company/faros-ai)
 - [Website](https://www.faros.ai)
 - [Documentation](https://docs.faros.ai)
-- [Plans](plans/faros-plans-pricing.yml)
-- [Rate Limits](rate-limits/faros-rate-limits.yml)
-- [Fin Ops](finops/faros-finops.yml)
+- [Blog](https://www.faros.ai/blog)
+- [GitHub](https://github.com/faros-ai)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 20.4** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 9.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 15.8 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/faros/](https://apis.io/providers/faros/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Faros AI: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/faros/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
